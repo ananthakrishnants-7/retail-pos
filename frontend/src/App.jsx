@@ -2,7 +2,12 @@ import POS from "./pages/POS";
 import Receipt from "./pages/Receipt";
 import SalesHistory from "./pages/SalesHistory";
 import Login from "./pages/Login";
-
+import Admin from "./pages/Admin";
+import AdminProducts from "./pages/AdminProducts";
+import AdminSuppliers from "./pages/AdminSuppliers";
+import AdminStaff from "./pages/AdminStaff";
+import AdminReturns from "./pages/AdminReturns";
+import AdminReports from "./pages/AdminReports";
 import {
   BrowserRouter,
   Routes,
@@ -16,6 +21,71 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+          <Route
+          path="/admin"
+          element={
+          isLoggedIn ? (
+          <Admin />
+          ) : (
+          <Navigate to="/login" replace />
+          )
+        }
+        />
+        <Route
+          path="/admin/staff"
+          element={
+          isLoggedIn ? (
+          <AdminStaff />
+            ) : (
+            <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/admin/returns"
+          element={
+            isLoggedIn ? (
+              <AdminReturns />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        <Route
+          path="/admin/reports"
+          element={
+            isLoggedIn ? (
+              <AdminReports />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+        {/* Admin Products */}
+        {/* Admin Suppliers */}
+        <Route
+          path="/admin/suppliers"
+          element={
+            isLoggedIn ? (
+              <AdminSuppliers />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
+        {/* Admin Staff */}
+        {/* Admin Products */}
+        <Route
+          path="/admin/products"
+          element={
+            isLoggedIn ? (
+              <AdminProducts />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
 
         {/* Login */}
         <Route

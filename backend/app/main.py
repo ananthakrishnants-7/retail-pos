@@ -1,22 +1,23 @@
 from fastapi import FastAPI
-
-from app.routes.auth import router as auth_router
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 
+from app.routes.auth import router as auth_router
 from app.routes.products import router as products_router
-
 from app.routes.suppliers import router as suppliers_router
-
 from app.routes.sales import router as sales_router
+from app.routes.staff import router as staff_router
+from app.routes.returns import router as returns_router
 
-from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(
     title=settings.app_name,
     version="1.0.0",
     description="Retail POS and Billing Management System",
 )
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -29,10 +30,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(auth_router)
 app.include_router(products_router)
 app.include_router(suppliers_router)
 app.include_router(sales_router)
+app.include_router(staff_router)
+app.include_router(staff_router)
+
 
 @app.get("/")
 def root():
